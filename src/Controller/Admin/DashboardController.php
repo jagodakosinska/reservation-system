@@ -2,7 +2,10 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Reservation;
+use App\Entity\Schedule;
 use App\Entity\Screen;
+use App\Entity\Seat;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -43,6 +46,9 @@ class DashboardController extends AbstractDashboardController
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
-        yield MenuItem::linkToCrud('Screens', 'fas fa-list', Screen::class);
+        yield MenuItem::linkToCrud('Screens', 'fa-solid fa-film', Screen::class);
+        yield MenuItem::linkToCrud('Seat', 'fa-solid fa-chair', Seat::class);
+        yield MenuItem::linkToCrud('Schedule', 'fa-solid fa-clapperboard', Schedule::class);
+        yield MenuItem::linkToCrud('Reservation', 'fa-solid fa-square-poll-vertical', Reservation::class);
     }
 }
