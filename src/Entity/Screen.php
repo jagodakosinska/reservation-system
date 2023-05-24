@@ -21,6 +21,12 @@ class Screen
     #[ORM\OneToMany(mappedBy: 'screen', targetEntity: Schedule::class)]
     private Collection $schedules;
 
+    #[ORM\Column(length: 255)]
+    private ?string $name = null;
+
+    #[ORM\Column]
+    private ?int $numberOfSeats = null;
+
     public function __construct()
     {
         $this->seats = new ArrayCollection();
@@ -88,6 +94,30 @@ class Screen
                 $schedule->setScreen(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getNumberOfSeats(): ?int
+    {
+        return $this->numberOfSeats;
+    }
+
+    public function setNumberOfSeats(int $numberOfSeats): self
+    {
+        $this->numberOfSeats = $numberOfSeats;
 
         return $this;
     }
