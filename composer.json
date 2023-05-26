@@ -8,6 +8,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "doctrine/doctrine-bundle": "^2.9",
+        "doctrine/doctrine-fixtures-bundle": "^3.4",
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.15",
         "easycorp/easyadmin-bundle": "^4",
@@ -24,7 +25,8 @@
     "require-dev": {
         "symfony/maker-bundle": "^1.48",
         "symfony/stopwatch": "6.2.*",
-        "symfony/web-profiler-bundle": "6.2.*"
+        "symfony/web-profiler-bundle": "6.2.*",
+        "zenstruck/foundry": "^1.33"
     },
     "config": {
         "allow-plugins": {
