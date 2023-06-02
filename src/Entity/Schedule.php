@@ -29,6 +29,9 @@ class Schedule
     #[ORM\OneToMany(mappedBy: 'schedule', targetEntity: Reservation::class, orphanRemoval: true)]
     private Collection $reservations;
 
+    #[ORM\Column(length: 255)]
+    private ?string $title = null;
+
     public function __construct()
     {
         $this->reservations = new ArrayCollection();
@@ -103,5 +106,22 @@ class Schedule
         }
 
         return $this;
+    }
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): self
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        return  (string) $this->getTitle();
     }
 }

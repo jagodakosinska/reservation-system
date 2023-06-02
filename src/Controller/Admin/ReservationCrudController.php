@@ -4,6 +4,9 @@ namespace App\Controller\Admin;
 
 use App\Entity\Reservation;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 
 class ReservationCrudController extends AbstractCrudController
 {
@@ -12,14 +15,21 @@ class ReservationCrudController extends AbstractCrudController
         return Reservation::class;
     }
 
-    /*
+
     public function configureFields(string $pageName): iterable
     {
-        return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
-        ];
+        yield IdField::new('id')
+            ->hideWhenCreating()
+            ->setDisabled();
+        yield AssociationField::new('schedule');
+        yield ChoiceField::new('status')
+            ->allowMultipleChoices(false)
+            ->renderExpanded(true)
+            ->setChoices([
+                    'Reservation is paid' => 'paid',
+                    'Reservation is made' => 'reserved',
+                    'Reservation is canceled' => 'canceled',
+            ]);
     }
-    */
+
 }

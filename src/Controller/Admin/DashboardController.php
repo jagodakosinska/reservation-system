@@ -6,6 +6,7 @@ use App\Entity\Reservation;
 use App\Entity\Schedule;
 use App\Entity\Screen;
 use App\Entity\Seat;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
@@ -51,4 +52,13 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Schedule', 'fa-solid fa-clapperboard', Schedule::class);
         yield MenuItem::linkToCrud('Reservation', 'fa-solid fa-square-poll-vertical', Reservation::class);
     }
+
+    public function configureCrud(): Crud
+    {
+        return parent::configureCrud()
+            ->showEntityActionsInlined();
+
+    }
+
+
 }

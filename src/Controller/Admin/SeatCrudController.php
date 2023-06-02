@@ -55,11 +55,6 @@ class SeatCrudController extends AbstractCrudController
 
     public function configureFields(string $pageName): iterable
     {
-//        return [
-//            IdField::new('id'),
-//            NumberField::new('number'),
-//            AssociationField::new(Screen::class),
-//        ];
         yield AssociationField::new('screen');
         yield IntegerField::new('number');
     }
