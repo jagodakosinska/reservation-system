@@ -5,11 +5,12 @@ namespace App\MessageHandler;
 use App\Entity\Screen;
 use App\Entity\Seat;
 use App\Message\GenerateSeatsMessage;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 
-final class GenerateSeatsMessageHandler implements MessageHandlerInterface
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
+
+#[AsMessageHandler]
+final class GenerateSeatsMessageHandler
 {
 
     public function __construct(private EntityManagerInterface $em)
