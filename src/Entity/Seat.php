@@ -6,6 +6,7 @@ use App\Repository\SeatRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: SeatRepository::class)]
 class Seat
@@ -13,6 +14,7 @@ class Seat
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(groups: 'schedule:reservation')]
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'seats')]
@@ -20,6 +22,7 @@ class Seat
     private ?Screen $screen = null;
 
     #[ORM\Column]
+    #[Groups(groups: 'schedule:reservation')]
     private ?int $number = null;
 
     #[ORM\OneToMany(mappedBy: 'seat', targetEntity: ReservationItem::class)]
@@ -87,5 +90,10 @@ class Seat
         }
 
         return $this;
+    }
+
+    public function __toString():string
+    {
+        return sprintf('%s',$this->number);
     }
 }
