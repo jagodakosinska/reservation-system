@@ -11,6 +11,10 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: ReservationRepository::class)]
 class Reservation
 {
+
+    const PAID = 'paid';
+    const RESERVED = 'reserved';
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -24,12 +28,12 @@ class Reservation
     private ?string $status = null;
 
     #[ORM\Column]
-    private ?float $totalPrice = null;
+    private ?float $totalPrice = 0;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $validDate = null;
 
-    #[ORM\OneToMany(mappedBy: 'reservation', targetEntity: ReservationItem::class)]
+    #[ORM\OneToMany(mappedBy: 'reservation', targetEntity: ReservationItem::class, cascade: ['persist'])]
     private Collection $reservationItems;
 
     public function __construct()

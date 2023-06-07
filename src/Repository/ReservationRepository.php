@@ -39,28 +39,24 @@ class ReservationRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Reservation[] Returns an array of Reservation objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('r')
-//            ->andWhere('r.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('r.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function calculate(Reservation $entity)
+    {
+        $sum = 0;
+        foreach ($entity->getReservationItems() as $item)
+        {
+            $sum += $item->getPrice()->getAmount();
+        }
+        $entity->setTotalPrice($sum);
 
-//    public function findOneBySomeField($value): ?Reservation
-//    {
-//        return $this->createQueryBuilder('r')
-//            ->andWhere('r.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        $validDate = $entity->getSchedule()->getStartTime()->modify('-30 min');
+        $entity->setValidDate($validDate);
+    }
+
+    public function listAll()
+    {
+        return $this->createQueryBuilder('r')
+            ->orderBy('r.id', 'ASC')
+            ->getQuery()
+            ->getArrayResult();
+    }
 }
