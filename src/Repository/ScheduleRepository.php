@@ -38,29 +38,18 @@ class ScheduleRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-
-//    /**
-//     * @return Schedule[] Returns an array of Schedule objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('s.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?Schedule
-//    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function listAllEvailable()
+    {
+        return $this->createQueryBuilder('s')
+            ->join('s.screen', 'sc', )
+            ->select('s.id, sc.name, s.title, s.startTime, s.endTime')
+            ->andWhere('s.startTime > :startTime')
+            ->setParameter('startTime',new \DateTime('-30min'))
+            ->orderBy('s.id', 'ASC')
+            ->getQuery()
+            ->getArrayResult();
+    }
 }
+
+
+
