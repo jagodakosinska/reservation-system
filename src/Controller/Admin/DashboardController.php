@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Price;
 use App\Entity\Reservation;
 use App\Entity\Schedule;
 use App\Entity\Screen;
@@ -51,6 +52,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Seat', 'fa-solid fa-chair', Seat::class);
         yield MenuItem::linkToCrud('Schedule', 'fa-solid fa-clapperboard', Schedule::class);
         yield MenuItem::linkToCrud('Reservation', 'fa-solid fa-square-poll-vertical', Reservation::class);
+        yield MenuItem::linkToCrud('Price', 'fa-regular fa-money-bill-1', Price::class);
     }
 
     public function configureCrud(): Crud
