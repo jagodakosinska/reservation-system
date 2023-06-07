@@ -21,6 +21,10 @@ class ReservationItem
     #[ORM\JoinColumn(nullable: false)]
     private ?Seat $seat = null;
 
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Price $price = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -46,6 +50,23 @@ class ReservationItem
     public function setSeat(?Seat $seat): self
     {
         $this->seat = $seat;
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        return sprintf('%s',$this->seat->getNumber());
+    }
+
+    public function getPrice(): ?Price
+    {
+        return $this->price;
+    }
+
+    public function setPrice(?Price $price): self
+    {
+        $this->price = $price;
 
         return $this;
     }
