@@ -39,28 +39,14 @@ class SeatRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Seat[] Returns an array of Seat objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('s.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function getAvailableBySchedule(int $scheduleId, int $screenId)
+    {
 
-//    public function findOneBySomeField($value): ?Seat
-//    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        $dql = 'SELECT s FROM App\Entity\Seat s WHERE s.screen= :screenId AND s.id NOT IN
+        (SELECT identity(ri.seat) FROM App\Entity\ReservationItem ri 
+        JOIN App\Entity\Reservation rs WITH ri.reservation=rs WHERE rs.schedule= :scheduleId)';
+        return $this->getEntityManager()->createQuery($dql)
+            ->execute(['screenId' => $screenId, 'scheduleId' => $scheduleId]);
+
+    }
 }
