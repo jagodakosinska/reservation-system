@@ -38,7 +38,7 @@ class ScheduleRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-    public function listAllEvailable()
+    public function listAllAvailable(): array
     {
         return $this->createQueryBuilder('s')
             ->join('s.screen', 'sc', )
