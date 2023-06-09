@@ -39,20 +39,28 @@ class ReservationRepository extends ServiceEntityRepository
         }
     }
 
-    public function calculate(Reservation $entity)
+    public function prepareData(Reservation $entity):void
+    {
+        $this->calculate($entity);
+        $this->setValidDate($entity);
+    }
+
+    private function calculate(Reservation $entity): void
     {
         $sum = 0;
-        foreach ($entity->getReservationItems() as $item)
-        {
+        foreach ($entity->getReservationItems() as $item) {
             $sum += $item->getPrice()->getAmount();
         }
         $entity->setTotalPrice($sum);
+    }
 
+    private function setValidDate(Reservation $entity): void
+    {
         $validDate = $entity->getSchedule()->getStartTime()->modify('-30 min');
         $entity->setValidDate($validDate);
     }
 
-    public function listAll()
+    public function listAll(): array
     {
         return $this->createQueryBuilder('r')
             ->orderBy('r.id', 'ASC')
