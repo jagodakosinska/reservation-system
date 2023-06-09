@@ -3,7 +3,6 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Reservation;
-use App\Entity\ReservationItem;
 use Doctrine\ORM\EntityManagerInterface;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
@@ -54,14 +53,14 @@ class ReservationCrudController extends AbstractCrudController
 
     public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
     {
-        $entityManager->getRepository(Reservation::class)->calculate($entityInstance);
+        $entityManager->getRepository(Reservation::class)->prepareData($entityInstance);
         parent::persistEntity($entityManager, $entityInstance);
 
     }
 
     public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
     {
-        $entityManager->getRepository(Reservation::class)->calculate($entityInstance);
+        $entityManager->getRepository(Reservation::class)->prepareData($entityInstance);
         parent::updateEntity($entityManager, $entityInstance);
     }
 
