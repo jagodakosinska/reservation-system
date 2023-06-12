@@ -3,9 +3,9 @@
 namespace App\Controller\API;
 
 use App\Repository\ReservationRepository;
+use App\RequestValidator\ReservationRequest;
 use App\Service\ReservationService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -21,9 +21,9 @@ class ReservationController extends AbstractController
     }
 
     #[Route('/create', name: 'new')]
-    public function create(Request $request, ReservationService $reservationService): Response
+    public function create(ReservationRequest $request, ReservationService $reservationService): Response
     {
-        $reservationService->handleReservation($request);
+        $reservationService->handle($request);
 
         return $this->json(['status' => 'success']);
 

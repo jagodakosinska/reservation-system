@@ -39,28 +39,16 @@ class PriceRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Price[] Returns an array of Price objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('p.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function findAllByName(): array
+    {
+        $prices = $this->createQueryBuilder('p')
+            ->getQuery()
+            ->getResult();
 
-//    public function findOneBySomeField($value): ?Price
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        return array_reduce($prices, function ($accumulator, $item) {
+            $accumulator[$item->getName()] = $item;
+            return $accumulator;
+        },[]);
+    }
+
 }

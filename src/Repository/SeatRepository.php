@@ -39,14 +39,25 @@ class SeatRepository extends ServiceEntityRepository
         }
     }
 
-    public function getAvailableBySchedule(int $scheduleId, int $screenId)
+    public function getAvailableBySchedule(int $scheduleId, int $screenId): array
     {
-
         $dql = 'SELECT s FROM App\Entity\Seat s WHERE s.screen= :screenId AND s.id NOT IN
         (SELECT identity(ri.seat) FROM App\Entity\ReservationItem ri 
         JOIN App\Entity\Reservation rs WITH ri.reservation=rs WHERE rs.schedule= :scheduleId)';
         return $this->getEntityManager()->createQuery($dql)
             ->execute(['screenId' => $screenId, 'scheduleId' => $scheduleId]);
+    }
 
+    public function hasSeats(int $screenId, array $seatList): bool
+    {
+        $result = $this->createQueryBuilder('s')
+            ->select('count(s)')
+            ->andWhere('s.screen = :screenId and s.id in (:seatList)')
+            ->setParameter('screenId', $screenId)
+            ->setParameter('seatList', $seatList)
+            ->getQuery()
+            ->getSingleScalarResult();
+
+        return $result == count($seatList);
     }
 }

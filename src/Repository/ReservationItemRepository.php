@@ -38,4 +38,18 @@ class ReservationItemRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+
+    public function checkIsReserved(int $scheduleId, array $seatList): bool
+    {
+        $result = $this->createQueryBuilder('ri')
+            ->select('count(ri)')
+            ->join('ri.reservation', 'r')
+            ->andWhere('ri.seat in (:seatList) and r.schedule = :scheduleId')
+            ->setParameter('seatList', $seatList)
+            ->setParameter('scheduleId', $scheduleId)
+            ->getQuery()
+            ->getSingleScalarResult();
+
+        return $result !== 0;
+    }
 }
