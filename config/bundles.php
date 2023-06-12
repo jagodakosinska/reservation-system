@@ -12,4 +12,5 @@ return [
     Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle::class => ['dev' => true, 'test' => true],
     Zenstruck\Foundry\ZenstruckFoundryBundle::class => ['dev' => true, 'test' => true],
     SymfonyBundles\JsonRequestBundle\JsonRequestBundle::class => ['all' => true],
+    DigitalRevolution\SymfonyRequestValidation\Bundle\RequestValidationBundle::class => ['all' => true],
 ];

@@ -4,8 +4,107 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e497b024858d1ceb7232d051165b0f16",
+    "content-hash": "d8d2534bdbafeb72a3775f341a53b090",
     "packages": [
+        {
+            "name": "digitalrevolution/symfony-request-validation",
+            "version": "v2.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/123inkt/symfony-request-validation.git",
+                "reference": "d5147521f8e86685836ff6cd3112e8844e2a59a3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/123inkt/symfony-request-validation/zipball/d5147521f8e86685836ff6cd3112e8844e2a59a3",
+                "reference": "d5147521f8e86685836ff6cd3112e8844e2a59a3",
+                "shasum": ""
+            },
+            "require": {
+                "digitalrevolution/symfony-validation-shorthand": "^1.0.4",
+                "php": ">=7.4",
+                "symfony/config": "^5.4 || ^6.0",
+                "symfony/dependency-injection": "^5.4 || ^6.0",
+                "symfony/http-foundation": "^5.4 || ^6.0",
+                "symfony/http-kernel": "^5.4 || ^6.0",
+                "symfony/validator": "^5.4 || ^6.0"
+            },
+            "require-dev": {
+                "digitalrevolution/phpunit-file-coverage-inspection": "^v1.0",
+                "phpmd/phpmd": "@stable",
+                "phpstan/extension-installer": "^1.1",
+                "phpstan/phpstan": "^1.4",
+                "phpstan/phpstan-phpunit": "^1.0",
+                "phpstan/phpstan-strict-rules": "^1.1",
+                "phpstan/phpstan-symfony": "^1.2",
+                "phpunit/phpunit": "^9.5",
+                "roave/security-advisories": "dev-latest",
+                "squizlabs/php_codesniffer": "^3.6"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "DigitalRevolution\\SymfonyRequestValidation\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Automatic request validation for symfony",
+            "support": {
+                "issues": "https://github.com/123inkt/symfony-request-validation/issues",
+                "source": "https://github.com/123inkt/symfony-request-validation/tree/v2.3.1"
+            },
+            "time": "2023-05-23T13:56:47+00:00"
+        },
+        {
+            "name": "digitalrevolution/symfony-validation-shorthand",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/123inkt/symfony-validation-shorthand.git",
+                "reference": "c3db9ef370c7e21a24fc2c61b192a663d49159be"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/123inkt/symfony-validation-shorthand/zipball/c3db9ef370c7e21a24fc2c61b192a663d49159be",
+                "reference": "c3db9ef370c7e21a24fc2c61b192a663d49159be",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.4",
+                "symfony/polyfill-php80": "^1.16",
+                "symfony/validator": "^5.0 || ^6.0"
+            },
+            "require-dev": {
+                "digitalrevolution/phpunit-file-coverage-inspection": "^v1.0",
+                "phpmd/phpmd": "@stable",
+                "phpstan/extension-installer": "^1.1",
+                "phpstan/phpstan": "^1.4",
+                "phpstan/phpstan-phpunit": "^1.0",
+                "phpstan/phpstan-strict-rules": "^1.1",
+                "phpunit/phpunit": "^9.5",
+                "roave/security-advisories": "dev-latest",
+                "squizlabs/php_codesniffer": "^3.6"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "DigitalRevolution\\SymfonyValidationShorthand\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Validation shorthand for symfony",
+            "support": {
+                "issues": "https://github.com/123inkt/symfony-validation-shorthand/issues",
+                "source": "https://github.com/123inkt/symfony-validation-shorthand/tree/v1.1.1"
+            },
+            "time": "2023-05-17T08:49:03+00:00"
+        },
         {
             "name": "doctrine/annotations",
             "version": "2.0.1",
