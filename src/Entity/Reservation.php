@@ -33,7 +33,7 @@ class Reservation
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $validDate = null;
 
-    #[ORM\OneToMany(mappedBy: 'reservation', targetEntity: ReservationItem::class, cascade: ['persist'])]
+    #[ORM\OneToMany(mappedBy: 'reservation', targetEntity: ReservationItem::class, cascade: ['persist', 'remove'],  orphanRemoval: true)]
     private Collection $reservationItems;
 
     public function __construct()
