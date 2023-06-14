@@ -3,12 +3,10 @@
 namespace App\Validator;
 
 use App\DTO\ReservationDTO;
-use App\DTO\ReservationItemsDTO;
 use App\Repository\ReservationItemRepository;
 use App\Repository\ScheduleRepository;
 use App\Repository\SeatRepository;
 use Symfony\Component\Form\Exception\UnexpectedTypeException;
-use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 

@@ -4,8 +4,9 @@ namespace App\Validator;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Validator\Constraint;
+use Symfony\Component\Validator\ConstraintValidator;
 
-class EntityExistsConstraintValidator extends \Symfony\Component\Validator\ConstraintValidator
+class EntityExistsConstraintValidator extends ConstraintValidator
 {
     public function __construct(private EntityManagerInterface $em)
     {
