@@ -38,6 +38,15 @@ class ReservationConstraintValidator extends ConstraintValidator
         }
 
         $schedule = $this->scheduleRepository->find($value->scheduleId);
+
+        $startTime = $schedule->getStartTime();
+        $reservationTime = new \DateTime('+ 30 min');
+
+        if($startTime < $reservationTime){
+            $this->context->buildViolation("Could not reserved film 30' before is started!")
+                ->addViolation();
+        }
+
         $seatList = [];
         foreach ($value->reservationItems as $item) {
             if ($item?->seat) {
