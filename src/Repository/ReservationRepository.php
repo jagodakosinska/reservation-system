@@ -39,7 +39,7 @@ class ReservationRepository extends ServiceEntityRepository
         }
     }
 
-    public function prepareData(Reservation $entity):void
+    public function prepareData(Reservation $entity): void
     {
         $this->calculate($entity);
         $this->setValidDate($entity);
@@ -67,4 +67,18 @@ class ReservationRepository extends ServiceEntityRepository
             ->getQuery()
             ->getArrayResult();
     }
+
+    public function deleteByValidDate(): int
+    {
+        $result = $this->createQueryBuilder('r')
+            ->delete(Reservation::class, 'r')
+            ->where('r.validDate < :now AND r.status != :status')
+            ->setParameter('now', new \DateTime())
+            ->setParameter('status', Reservation::PAID)
+            ->getQuery()
+            ->getSingleScalarResult();
+
+        return $result;
+    }
+
 }
