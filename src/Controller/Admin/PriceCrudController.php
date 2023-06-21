@@ -22,6 +22,6 @@ class PriceCrudController extends AbstractCrudController
             Yield TextField::new('name');
             Yield NumberField::new('amount')
             ->setNumDecimals(2);
-            yield CollectionField::new('seats');
+            yield CollectionField::new('seats')->onlyWhenCreating();
     }
 }
