@@ -27,7 +27,7 @@ class GenerateSeatsTest extends IntegrationTestCase
         $messageHandler($message);
 
         // Then
-              $afterCount = $this->entityManager->getRepository(Seat::class)->count(['screen' => $screen]);
+        $afterCount = $this->entityManager->getRepository(Seat::class)->count(['screen' => $screen]);
         $this->assertEquals($screen->getNumberOfSeats(), $afterCount);
     }
 
