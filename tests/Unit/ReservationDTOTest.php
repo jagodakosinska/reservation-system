@@ -15,7 +15,8 @@ class ReservationDTOTest extends TestCase
 
     public function testIfCanCreateDTORequest(): void
     {
-        $request = $this->createFromJson();
+
+        $request = self::createFromJson();
 
         $dto = ReservationDTO::fromRequest($request);
         $this->assertEquals(1, $dto->scheduleId);
@@ -28,7 +29,7 @@ class ReservationDTOTest extends TestCase
         $this->assertIsInt($dto->reservationItems[0]->seat);
     }
 
-    private function createFromJson()
+    public static function createFromJson()
     {
         return json_decode('{
         "scheduleId": 1,
